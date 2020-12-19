@@ -29,3 +29,17 @@ class HungarianCard:
         if not isinstance(new_suit, Suit):
             raise BadSuitException(f"Unknown suit ({new_suit})")
         self._suit = new_suit
+
+    def __hash__(self) -> int:
+        return hash((self._rank, self._suit))
+
+    def __eq__(self, other) -> bool:
+        if not isinstance(other, HungarianCard):
+            return False
+        return self.rank == other.rank and self.suit == other.suit
+
+    def __str__(self) -> str:
+        return f"Card({self._rank.value}, {self._suit.value})"
+
+    def __repr__(self) -> str:
+        return f"<Card({self._rank}, {self._suit})>"

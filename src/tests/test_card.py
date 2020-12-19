@@ -33,3 +33,35 @@ def test_not_using_suit_class_results_in_exception():
 
     with pytest.raises(BadSuitException):
         HungarianCard(rank=rank, suit=suit)
+
+
+def test_equal_works_currectly():
+    card_one = HungarianCard(Rank.VII, Suit.HEARTS)
+    card_two = HungarianCard(Rank.VII, Suit.HEARTS)
+
+    assert card_one == card_two
+
+    card_three = HungarianCard(Rank.ACE, Suit.HEARTS)
+
+    assert card_three != card_one
+    assert card_three != card_two
+
+
+def test_hash_works_correctly():
+    card_one = HungarianCard(Rank.VII, Suit.HEARTS)
+    card_two = HungarianCard(Rank.VII, Suit.HEARTS)
+
+    assert hash(card_one) == hash(card_two)
+    assert len(set([card_one, card_two])) == 1
+
+
+def test_card_has_a_nice_string_representation():
+    card = HungarianCard(Rank.VII, Suit.HEARTS)
+
+    assert "Card(VII, HEARTS)" == str(card)
+
+
+def test_card_has_a_repr_set():
+    card = HungarianCard(Rank.VII, Suit.HEARTS)
+
+    assert "<Card(Rank.VII, Suit.HEARTS)>" == repr(card)
