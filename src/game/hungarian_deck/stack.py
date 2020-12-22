@@ -61,4 +61,7 @@ class Stack:
         if self._num_cards_on_stack == 0:
             return self.top_card
 
+        if self._num_cards_on_stack >= self.max_stack_size:
+            return None
+
         return next_card(self.top_card)
