@@ -40,3 +40,13 @@ def test_drawing_more_than_32_times_causes_exception(deck: HungarianDeck):
     with pytest.raises(OutOfCardsException) as e:
         deck.draw()
         assert "no cards left" in str(e)
+
+
+def test_reset_recreates_the_deck(deck: HungarianDeck):
+    deck.draw_many(10)
+
+    assert len(deck) == 22
+
+    deck.reset()
+
+    assert len(deck) == 32

@@ -32,7 +32,7 @@ def test_setting_starting_rank_sets_starting_card():
 
     stack.starting_rank = Rank.VII
 
-    assert stack.top_card == HungarianCard(Rank.VII, Suit.LEAVES)
+    assert stack.next_card() == HungarianCard(Rank.VII, Suit.LEAVES)
 
 
 def test_after_setting_starting_card_the_next_card_in_line_can_be_put_onto_the_stack():

@@ -1,4 +1,4 @@
-from random import choice, choices
+from random import choice
 from typing import List
 from . import Rank, Suit, HungarianCard
 
@@ -9,12 +9,9 @@ class OutOfCardsException(Exception):
 
 class HungarianDeck:
     def __init__(self):
-        self._cards = [
-            HungarianCard(rank, suit)
-            for rank in Rank
-            for suit in Suit
-            if rank != Rank.UNKNOWN_RANK and suit != Suit.UNKNOWN_SUIT
-        ]
+        self._cards = None
+
+        self.reset()
 
     def __len__(self) -> int:
         return len(self._cards)
@@ -28,3 +25,11 @@ class HungarianDeck:
 
     def draw_many(self, num: int) -> List[HungarianCard]:
         return [self.draw() for _ in range(num)]
+
+    def reset(self):
+        self._cards = [
+            HungarianCard(rank, suit)
+            for rank in Rank
+            for suit in Suit
+            if rank != Rank.UNKNOWN_RANK and suit != Suit.UNKNOWN_SUIT
+        ]
